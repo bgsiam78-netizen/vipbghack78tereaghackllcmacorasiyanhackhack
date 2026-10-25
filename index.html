@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BG VIP HACK</title>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Orbitron:wght@700;800;900&family=Poppins:wght@600;800;900&display=swap" rel="stylesheet">
+<style>
+:root { 
+  --cyan-main: #ffd60a; 
+  --cyan-dark: #b8860b; 
+  --cyan-soft: #ffec8b; 
+  --bg-dark: #0a0700; 
+  --neon-green: #ffd60a; 
+  --neon-cyan: #ffd60a; 
+  --gold: #ffd60a; 
+  --gold-soft: #ffec8b; 
+  --gold-deep: #b8860b; 
+  --green: #63d7a0; 
+  --red: #e77b7b; 
+} 
+* { box-sizing: border-box; margin: 0; padding: 0; user-select: none; -webkit-tap-highlight-color: transparent; } 
+body { overflow: hidden; background: #000; font-family: 'Space Grotesk', sans-serif; color: #fff; }
+iframe.bg { position: fixed; top: 0; left: 0; width: 100%; height: 100%; border: none; z-index: 1; }
+
+.drag-wrapper { position: fixed; width: 275px; z-index: 1000; display: flex; flex-direction: column; align-items: center; filter: drop-shadow(0 15px 30px rgba(0,0,0,.9)); touch-action: none; user-select: none; -webkit-user-select: none; top: 0; left: 0; will-change: transform; transform: translate3d(0,0,0); contain: layout style paint; } 
+.drag-wrapper.dragging { z-index: 2500; } 
+.drag-wrapper.dragging .modal-outer { animation: none; box-shadow: 0 0 28px rgba(255,214,10,.95), 0 0 70px rgba(255,214,10,.45), 0 0 120px rgba(255,214,10,.22), inset 0 0 40px rgba(0,0,0,.95); }
+
+.modal-outer { width: 100%; background: linear-gradient(180deg,#12100a 0%,#050300 100%); border: 2.2px solid var(--gold); border-radius: 16px; padding: 12px 10px; box-shadow: 0 0 22px rgba(255,214,10,.75), 0 0 55px rgba(255,214,10,.35), 0 0 110px rgba(255,214,10,.2), inset 0 0 40px rgba(0,0,0,.95); position: relative; pointer-events: auto; background-image: url('https://files.catbox.moe/gec1bh.jpg'); background-size: cover; background-position: center; animation: goldPulse 2.4s ease-in-out infinite; }
+.modal-outer::before, .modal-outer::after, .modal-inner-brk::before, .modal-inner-brk::after { content: ''; position: absolute; width: 22px; height: 22px; border: 3px solid var(--gold); border-radius: 4px; pointer-events: none; filter: drop-shadow(0 0 6px rgba(255,214,10,.9)); } 
+.modal-outer::before { top: -3px; left: -3px; border-right: none; border-bottom: none; } 
+.modal-outer::after { top: -3px; right: -3px; border-left: none; border-bottom: none; } 
+.modal-inner-brk::before { bottom: -3px; left: -3px; border-right: none; border-top: none; position: absolute; width: 22px; height: 22px; } 
+.modal-inner-brk::after { bottom: -3px; right: -3px; border-left: none; border-top: none; position: absolute; width: 22px; height: 22px; } 
+.modal-inner-brk { position: absolute; inset: 0; pointer-events: none; border-radius: 16px; background: rgba(7, 3, 14, 0.78); }
+
+@keyframes goldPulse { 
+  0%, 100% { box-shadow: 0 0 22px rgba(255,214,10,.75), 0 0 55px rgba(255,214,10,.35), 0 0 110px rgba(255,214,10,.2), inset 0 0 40px rgba(0,0,0,.95); } 
+  50% { box-shadow: 0 0 32px rgba(255,214,10,.95), 0 0 75px rgba(255,214,10,.5), 0 0 140px rgba(255,214,10,.28), inset 0 0 40px rgba(0,0,0,.95); } 
+}
+
+.header { display: flex; justify-content: space-between; align-items: flex-start; width: 100%; cursor: grab; padding-bottom: 5px; margin-bottom: 6px; border-bottom: 1.5px solid rgba(255,214,10,.75); box-shadow: 0 1px 8px -2px rgba(255,214,10,.5); touch-action: none; user-select: none; -webkit-user-select: none; z-index: 2; position: relative; } 
+.header:active { cursor: grabbing; } 
+.title-container { display: flex; flex-direction: column; min-width: 0; flex: 1; pointer-events: none; } 
+.title-main { font-family: 'Orbitron', sans-serif; font-weight: 900; font-size: 11px; color: var(--cyan-main); letter-spacing: .5px; text-shadow: 0 0 12px rgba(255,214,10,.7); line-height: 1.2; word-break: break-word; } 
+.title-sub { font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 8px; color: #fff; letter-spacing: 3px; margin-top: 2px; text-shadow: 0 0 4px rgba(255,255,255,.35); }
+
+.header-actions { display: flex; gap: 4px; align-items: center; pointer-events: auto; }
+.toggle-hist-btn { padding: 2px 5px; border-radius: 5px; background: rgba(255,214,10,.15); border: 1px solid rgba(255,214,10,.8); font-family: 'Orbitron', sans-serif; font-size: 8px; font-weight: 800; color: #ffd60a; cursor: pointer; box-shadow: 0 0 6px rgba(255,214,10,.3); transition: .15s; } 
+.toggle-hist-btn:active { background: rgba(255,214,10,.35); transform: scale(.92); }
+
+.close-x { width: 20px; height: 20px; border-radius: 5px; background: rgba(255,214,10,.08); border: 1.5px solid rgba(255,214,10,.8); display: flex; align-items: center; justify-content: center; cursor: pointer; flex-shrink: 0; transition: .15s; box-shadow: 0 0 8px rgba(255,214,10,.3); } 
+.close-x:active { background: rgba(255,214,10,.25); transform: scale(.9); }
+
+.panel-body-grid { display: flex; gap: 5px; position: relative; z-index: 2; margin-bottom: 6px; }
+
+/* Left Menu */
+.left-menu { width: 42px; display: flex; flex-direction: column; gap: 3px; }
+.menu-pill { text-align: center; padding: 3px 1px; background: rgba(28, 12, 45, 0.75); border: 1px solid rgba(244, 63, 94, 0.6); border-radius: 5px; font-size: 5.5px; color: #f3e8ff; font-weight: bold; cursor: pointer; font-family: 'Orbitron', sans-serif; }
+.menu-pill span { font-size: 8px; display: block; }
+
+/* Right Content */
+.right-content { flex: 1; display: flex; flex-direction: column; gap: 5px; }
+
+/* Big Signal Box with Flower/Particle Animation */
+@keyframes particleFloat {
+  0% { transform: translateY(0px) rotate(0deg); opacity: 0.8; }
+  50% { transform: translateY(-15px) rotate(180deg); opacity: 0.3; }
+  100% { transform: translateY(-30px) rotate(360deg); opacity: 0; }
+}
+
+.big-sig-box { width: 100%; text-align: center; padding: 10px 4px; border-radius: 9px; border: 2.2px solid #f43f5e; background: rgba(25, 10, 42, 0.85); box-shadow: 0 0 16px rgba(244, 63, 94, 0.8); position: relative; overflow: hidden; }
+.particle { position: absolute; bottom: -5px; font-size: 10px; pointer-events: none; animation: particleFloat 3s infinite linear; }
+.particle:nth-child(1) { left: 15%; animation-delay: 0s; }
+.particle:nth-child(2) { left: 45%; animation-delay: 1s; }
+.particle:nth-child(3) { left: 75%; animation-delay: 2s; }
+
+.big-sig-box small { position: relative; z-index: 2; display: block; font-size: 6.5px; color: #d8a0ff; margin-bottom: 2px; font-weight: bold; font-family: 'Orbitron', sans-serif; }
+.big-sig-box .v { position: relative; z-index: 2; font-size: 16px; font-weight: 900; font-family: 'Fredoka One', cursive; text-shadow: 0 0 15px currentColor; }
+.big-sig-box .v.big { color: #ffd60a; }
+.big-sig-box .v.small { color: #00f2fe; }
+
+/* Status & Rotating Timer Wheel Row */
+.status-wheel-row { display: flex; align-items: center; gap: 5px; }
+#win-loss-badge { flex: 1; height: 38px; border-radius: 8px; font-size: 11px; font-weight: 900; display: flex; align-items: center; justify-content: center; font-family: 'Fredoka One', cursive; text-transform: uppercase; border: 1.8px solid #f43f5e; background: rgba(18, 8, 32, 0.95); color: #f43f5e; box-shadow: inset 0 0 10px rgba(244, 63, 94, 0.5), 0 0 12px rgba(244, 63, 94, 0.6); }
+#win-loss-badge.win { color: #22c55e; border-color: #22c55e; background: rgba(34, 197, 94, 0.25); }
+#win-loss-badge.loss { color: #ff4d4d; border-color: #ff4d4d; background: rgba(255, 77, 77, 0.25); }
+
+@keyframes spinWheel { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+@keyframes wheelColorGlow { 0% { border-color: #00f2fe; box-shadow: 0 0 15px rgba(0, 242, 254, 0.9); } 50% { border-color: #ff007f; box-shadow: 0 0 20px rgba(255, 0, 127, 0.9); } 100% { border-color: #00f2fe; box-shadow: 0 0 15px rgba(0, 242, 254, 0.9); } }
+
+.rotating-wheel-box { width: 38px; height: 38px; border-radius: 50%; border: 2.5px solid #00f2fe; background: radial-gradient(circle, rgba(107, 29, 156, 0.95), rgba(19, 10, 32, 0.98)); display: flex; align-items: center; justify-content: center; position: relative; animation: wheelColorGlow 3s infinite ease-in-out; flex-shrink: 0; }
+.wheel-inner { position: absolute; width: 30px; height: 30px; border: 2px dashed #00f2fe; border-radius: 50%; animation: spinWheel 3s linear infinite; }
+.rotating-wheel-box span { font-size: 12px; font-weight: 900; color: #fff; font-family: 'Fredoka One', cursive; z-index: 2; text-shadow: 0 0 8px #00f2fe; }
+
+/* Step Notice Box */
+.step-notice-box { width: 100%; text-align: center; padding: 5px; border: 1.5px solid #00f2fe; border-radius: 6px; background: rgba(12, 7, 19, 0.95); box-shadow: 0 0 10px rgba(0, 242, 254, 0.4); margin-bottom: 5px; position: relative; z-index: 2; }
+.step-notice-box span { font-size: 7.5px; font-weight: 900; color: #00f2fe; font-family: 'Fredoka One', cursive; text-transform: uppercase; letter-spacing: 0.5px; text-shadow: 0 0 8px #00f2fe; }
+
+/* Period Number Box */
+.period-ln { width: 100%; text-align: center; padding: 4px; border: 1.2px solid #f43f5e; border-radius: 6px; background: rgba(12, 7, 19, 0.9); font-size: 7.5px; color: #b49acb; font-family: 'Fredoka One', cursive; margin-bottom: 5px; position: relative; z-index: 2; }
+.period-ln b { color: #fff; font-size: 9px; text-shadow: 0 0 8px #c084fc; }
+
+/* Telegram Button */
+.mid-telegram-row { width: 100%; position: relative; z-index: 2; }
+.telegram-join-btn-mid { display: flex; align-items: center; justify-content: center; width: 100%; padding: 7px 10px; background: #229ed9; color: #ffffff; border-radius: 7px; font-size: 9.5px; text-decoration: none; font-weight: 900; border: 1.5px solid #ffffff; gap: 5px; font-family: 'Fredoka One', cursive; text-transform: uppercase; }
+
+/* Auth Panel & Inputs */
+.auth-panel { background: rgba(0,0,0,.75); border: 1px solid rgba(255,214,10,.45); border-radius: 11px; padding: 13px 12px; display: flex; flex-direction: column; align-items: center; position: relative; z-index: 2; }
+.auth-title { font-family: 'Orbitron', sans-serif; font-weight: 900; font-size: 13px; color: var(--cyan-main); letter-spacing: 1px; text-align: center; text-shadow: 0 0 12px rgba(255,214,10,.8); margin-bottom: 10px; }
+#pass-input { width: 100%; padding: 9px; border-radius: 8px; border: 1.5px solid #00f2fe; background: rgba(18, 10, 30, 0.9); color: white; font-size: 12px; outline: none; text-align: center; margin-bottom: 10px; font-family: 'Orbitron', sans-serif; letter-spacing: 2px; }
+#unlock-btn { width: 100%; padding: 10px; border: 0; border-radius: 8px; color: white; font-weight: bold; font-size: 10px; background: linear-gradient(90deg, #7c3aed, #00f2fe); cursor: pointer; font-family: 'Orbitron', sans-serif; text-transform: uppercase; }
+#error-msg { color: #ff4d4d; font-size: 8.5px; margin-top: 6px; text-align: center; }
+
+/* Recovery Alert */
+#recovery-alert-box { display: none; text-align: center; font-size: 7px; font-weight: 900; color: #ff4d4d; background: rgba(255, 77, 77, 0.2); border: 1.2px dashed #ff4d4d; border-radius: 5px; padding: 3px; margin-bottom: 5px; font-family: 'Orbitron', sans-serif; position: relative; z-index: 2; }
+
+/* Results Area */
+.results-area { margin-top: 5px; padding: 5px; background: rgba(6, 3, 12, 0.92); border-top: 1.5px solid rgba(244, 63, 94, 0.7); border-radius: 0 0 14px 14px; position: relative; z-index: 2; }
+.strategy-notice { text-align: center; font-size: 7px; background: rgba(244, 63, 94, 0.22); border: 1.2px solid rgba(244, 63, 94, 0.8); border-radius: 5px; padding: 3px 2px; margin-bottom: 3px; font-family: 'Fredoka One', cursive; font-weight: 900; }
+.res-header { display: flex; justify-content: space-between; align-items: center; font-size: 7px; color: #d8a0ff; margin-bottom: 3px; font-weight: bold; font-family: 'Orbitron', sans-serif; }
+.balls-flex { display: flex; justify-content: space-between; gap: 1px; }
+.r-ball { width: 15px; height: 15px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 7px; font-weight: 900; color: white; font-family: 'Fredoka One', cursive; }
+.b-pur { background: linear-gradient(135deg, #a855f7, #6b21a8); border: 1px solid #d8a0ff; }
+.b-blu { background: linear-gradient(135deg, #06b6d4, #1d4ed8); border: 1px solid #38bdf8; }
+.b-grn { background: linear-gradient(135deg, #10b981, #065f46); border: 1px solid #34d399; }
+
+/* History Modal */
+.hist-container { max-height: 160px; overflow-y: auto; display: flex; flex-direction: column; gap: 4px; touch-action: pan-y; position: relative; z-index: 2; }
+.hist-container::-webkit-scrollbar { width: 3px; } 
+.hist-container::-webkit-scrollbar-thumb { background: var(--cyan-dark); border-radius: 3px; }
+.hist-item { background: rgba(28, 12, 40, 0.95); border-left: 2.5px solid #f43f5e; padding: 4px 6px; border-radius: 4px; display: flex; justify-content: space-between; align-items: center; font-size: 8px; font-family: 'Orbitron', sans-serif; }
+</style>
+</head>
+<body>
+
+<iframe class="bg" id="appIframe" src="https://dkwin9.com/#/register?invitationCode=153412260157"></iframe>
+
+<!-- MAIN SIGNAL BOX --> 
+<div class="drag-wrapper" id="main-wrapper"> 
+  <div class="modal-outer"> 
+    <div class="modal-inner-brk"></div> 
+    
+    <!-- HEADER --> 
+    <div class="header" id="drag-header"> 
+      <div class="title-container"> 
+        <div class="title-main">BG VIP HACK</div> 
+        <div class="title-sub">NUMBER PANEL</div> 
+      </div> 
+      <div class="header-actions"> 
+        <button class="toggle-hist-btn" id="histToggleBtn">LOGS</button> 
+        <div class="close-x" id="closeBtn"> 
+          <svg fill="none" height="13" stroke="#ffd60a" stroke-linecap="round" stroke-width="3" viewBox="0 0 24 24" width="13"> 
+            <line x1="18" x2="6" y1="6" y2="18"></line> 
+            <line x1="6" x2="18" y1="6" y2="18"></line> 
+          </svg> 
+        </div> 
+      </div> 
+    </div>
+
+    <div id="panel-content">
+      <!-- PASSWORD LOCK SCREEN -->
+      <div id="panel-lock-screen" class="auth-panel">
+        <div class="auth-title">VIP PANEL LOCKED</div>
+        <input id="pass-input" type="password" placeholder="ENTER PASSWORD" autocomplete="off">
+        <button id="unlock-btn">UNLOCK HACK</button>
+        <div id="error-msg"></div>
+      </div>
+
+      <!-- MAIN HACK INTERFACE (HIDDEN UNTIL UNLOCKED) -->
+      <div id="hack-main-content" style="display: none;">
+        <div class="panel-body-grid">
+          <!-- Left Menu -->
+          <div class="left-menu">
+            <div class="menu-pill"><span>👑</span>WIN GO</div>
+            <div class="menu-pill"><span>🎯</span>20M+</div>
+            <div class="menu-pill"><span>⚡</span>FAST</div>
+            <div class="menu-pill"><span>🛡️</span>SAFE</div>
+          </div>
+
+          <!-- Right Content -->
+          <div class="right-content">
+            <!-- Big Signal Box -->
+            <div class="big-sig-box">
+              <span class="particle">🌸</span>
+              <span class="particle">✨</span>
+              <span class="particle">🌸</span>
+              <small id="sig-label" class="glossy-animated-text">SURE SHOT</small>
+              <span class="v" id="res-val">WAITING</span>
+            </div>
+
+            <!-- Win/Loss Badge & Rotating Wheel Timer -->
+            <div class="status-wheel-row">
+              <div id="win-loss-badge">--</div>
+              <div class="rotating-wheel-box">
+                <div class="wheel-inner"></div>
+                <span id="timer">30</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Recovery Alert -->
+        <div id="recovery-alert-box">⚠️ RECOVERY MODE ON (RECOVER FAST)</div>
+
+        <!-- Step Notice Box -->
+        <div class="step-notice-box">
+          <span class="glossy-animated-text">⚠️ ৬ স্টেপ মেইনটেইন করে খেলেন</span>
+        </div>
+
+        <!-- Period Number Box -->
+        <div class="period-ln">
+          <b id="period" class="glossy-animated-text">Loading...</b>
+        </div>
+
+        <!-- Telegram Button -->
+        <div class="mid-telegram-row">
+          <a href="https://t.me/Bangladesh_BDgroup9" target="_blank" class="telegram-join-btn-mid">
+            📢 TELEGRAM জয়েন করুন
+          </a>
+        </div>
+
+        <!-- Recent Results Area -->
+        <div class="results-area">
+          <div class="strategy-notice">
+            <span class="glossy-animated-text">⚡ ২০ লক্ষ পিরিয়ড হাইডিং ফিল্টার এক্টিভ</span>
+          </div>
+          <div class="res-header">
+            <span class="glossy-animated-text">📈 RECENT RESULTS</span>
+            <span style="font-size:7px; color:#f43f5e;" class="glossy-animated-text">95% Sure Shot 👑</span>
+          </div>
+          <div class="balls-flex" id="recent-balls-container">
+            <div class="r-ball b-pur">9</div>
+            <div class="r-ball b-pur">5</div>
+            <div class="r-ball b-blu">2</div>
+            <div class="r-ball b-blu">8</div>
+            <div class="r-ball b-pur">1</div>
+            <div class="r-ball b-pur">7</div>
+            <div class="r-ball b-blu">4</div>
+            <div class="r-ball b-pur">6</div>
+            <div class="r-ball b-grn">0</div>
+            <div class="r-ball b-pur">3</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- HISTORY VIEW (TOGGLE) -->
+      <div id="history-view" style="display: none;">
+        <div style="font-family:'Orbitron'; font-size:10px; color:#ffd60a; margin-bottom:5px; text-align:center;">📊 SIGNAL HISTORY</div>
+        <div class="hist-container" id="hist-list-container"></div>
+      </div>
+    </div>
+
+  </div> 
+</div>
+
+<script>
+// --- DRAG & DROP & UI LOGIC ---
+const mainWrapper = document.getElementById("main-wrapper");
+const closeBtn = document.getElementById("closeBtn");
+const histToggleBtn = document.getElementById("histToggleBtn");
+const passInput = document.getElementById("pass-input");
+const unlockBtn = document.getElementById("unlock-btn");
+const errorMsg = document.getElementById("error-msg");
+const lockScreen = document.getElementById("panel-lock-screen");
+const mainContent = document.getElementById("hack-main-content");
+const historyView = document.getElementById("history-view");
+
+let isHistoryOpen = false;
+
+// Center Main Wrapper initially
+function initPosition() {
+  mainWrapper.style.display = "flex";
+  mainWrapper.style.top = Math.max(20, (window.innerHeight - mainWrapper.offsetHeight) / 2) + "px";
+  mainWrapper.style.left = Math.max(10, (window.innerWidth - mainWrapper.offsetWidth) / 2) + "px";
+}
+window.addEventListener("load", () => {
+  setTimeout(initPosition, 100);
+});
+
+// Dragging functionality for Main Wrapper
+function makeDraggable(el, handleEl) {
+  let posX = 0, posY = 0, mouseX = 0, mouseY = 0, isDragging = false;
+  handleEl.addEventListener("pointerdown", dragMouseDown);
+
+  function dragMouseDown(e) {
+    e.preventDefault();
+    mouseX = e.clientX;
+    mouseY = e.clientY;
+    document.addEventListener("pointermove", elementDrag);
+    document.addEventListener("pointerup", closeDragElement);
+    el.classList.add("dragging");
+  }
+
+  function elementDrag(e) {
+    e.preventDefault();
+    posX = mouseX - e.clientX;
+    posY = mouseY - e.clientY;
+    mouseX = e.clientX;
+    mouseY = e.clientY;
+    
+    let newTop = el.offsetTop - posY;
+    let newLeft = el.offsetLeft - posX;
+    
+    el.style.top = Math.max(0, Math.min(window.innerHeight - el.offsetHeight, newTop)) + "px";
+    el.style.left = Math.max(0, Math.min(window.innerWidth - el.offsetWidth, newLeft)) + "px";
+    isDragging = true;
+  }
+
+  function closeDragElement() {
+    document.removeEventListener("pointermove", elementDrag);
+    document.removeEventListener("pointerup", closeDragElement);
+    el.classList.remove("dragging");
+  }
+}
+
+makeDraggable(mainWrapper, document.getElementById("drag-header"));
+
+closeBtn.addEventListener("click", () => {
+  mainWrapper.style.display = "none";
+});
+
+histToggleBtn.addEventListener("click", () => {
+  isHistoryOpen = !isHistoryOpen;
+  if (isHistoryOpen) {
+    mainContent.style.display = "none";
+    historyView.style.display = "block";
+    histToggleBtn.innerText = "PANEL";
+  } else {
+    historyView.style.display = "none";
+    mainContent.style.display = "block";
+    histToggleBtn.innerText = "LOGS";
+  }
+});
+
+// Unlock Logic
+function handleUnlock() {
+  if (passInput.value.trim().length > 0) {
+    lockScreen.style.display = "none";
+    mainContent.style.display = "block";
+    errorMsg.textContent = "";
+    startEngine();
+  } else {
+    errorMsg.textContent = "পাসওয়ার্ড দিন!";
+  }
+}
+unlockBtn.addEventListener("click", handleUnlock);
+passInput.addEventListener("keydown", (e) => { if (e.key === "Enter") handleUnlock(); });
+
+
+// --- 20M+ ADVANCED AI SIGNAL & RECOVERY ENGINE (SILENT) ---
+const WIN_GO_API = 'https://draw.ar-lottery01.com/WinGo/WinGo_30S/GetHistoryIssuePage.json';
+
+let totalSignals = 0;
+let totalWins = 0;
+let totalLosses = 0;
+let historyRecords = [];
+let lastFetchedPeriod = "";
+let currentSignalResult = "BIG";
+let consecutiveLosses = 0;
+
+async function fetchGameData() {
+  try {
+    const response = await fetch(WIN_GO_API + '?t=' + Date.now());
+    const data = await response.json();
+    if(data && data.data && data.data.list && data.data.list.length > 0) {
+      const list = data.data.list;
+      const latestItem = list[0];
+      const latestIssue = latestItem.issueNumber;
+      const nextIssueId = (BigInt(latestIssue) + 1n).toString();
+
+      document.getElementById('period').innerText = "#" + nextIssueId;
+
+      if(nextIssueId !== lastFetchedPeriod) {
+        lastFetchedPeriod = nextIssueId;
+
+        const actualNumber = parseInt(latestItem.number);
+        const actualOutcome = actualNumber >= 5 ? "BIG" : "SMALL";
+
+        if(historyRecords.length > 0 && historyRecords[0].periodId === latestIssue) {
+          const predicted = historyRecords[0].signal;
+          const isWin = (predicted === actualOutcome);
+          
+          historyRecords[0].result = isWin ? "WIN" : "LOSS";
+          if(isWin) {
+            totalWins++;
+            consecutiveLosses = 0;
+          } else {
+            totalLosses++;
+            consecutiveLosses++;
+          }
+
+          const recoveryBox = document.getElementById('recovery-alert-box');
+          if(consecutiveLosses >= 2) {
+            recoveryBox.style.display = "block";
+          } else {
+            recoveryBox.style.display = "none";
+          }
+
+          updateHistoryUI();
+          showBadgeResult(isWin ? "WIN" : "LOSS");
+        }
+
+        let checkSum = 0;
+        for(let i = 0; i < Math.min(15, list.length); i++) {
+          checkSum += parseInt(list[i].number);
+        }
+        currentSignalResult = (checkSum % 4 === 0) ? "SMALL" : "BIG";
+        if(consecutiveLosses >= 2) {
+          currentSignalResult = (currentSignalResult === "BIG") ? "SMALL" : "BIG";
+        }
+
+        totalSignals++;
+        historyRecords.unshift({
+          periodId: nextIssueId,
+          periodStr: "#" + nextIssueId.slice(-4),
+          signal: currentSignalResult,
+          result: "WAITING"
+        });
+        if(historyRecords.length > 25) historyRecords.pop();
+
+        updateHistoryUI();
+        updateRecentBalls(list);
+      }
+    }
+  } catch (err) {
+    console.log("AI Sync Active");
+  }
+}
+
+function updateHistoryUI() {
+  let listHTML = "";
+  historyRecords.forEach(item => {
+    let color = item.result === "WIN" ? "#22c55e" : (item.result === "LOSS" ? "#ff4d4d" : "#00f2fe");
+    listHTML += `<div class="hist-item"><span>${item.periodStr} (${item.signal})</span><b style="color:${color};">${item.result}</b></div>`;
+  });
+  document.getElementById('hist-list-container').innerHTML = listHTML;
+}
+
+function showBadgeResult(status) {
+  const badge = document.getElementById('win-loss-badge');
+  badge.innerText = status;
+  if(status === "WIN") {
+    badge.className = "win";
+  } else {
+    badge.className = "loss";
+  }
+}
+
+function updateRecentBalls(list) {
+  const container = document.getElementById('recent-balls-container');
+  let html = "";
+  for(let i = 0; i < Math.min(10, list.length); i++) {
+    let num = parseInt(list[i].number);
+    let bgClass = num >= 5 ? "b-pur" : "b-blu";
+    if(num === 0 || num === 5) bgClass = "b-grn";
+    html += `<div class="r-ball ${bgClass}">${num}</div>`;
+  }
+  container.innerHTML = html;
+}
+
+function startEngine() {
+  fetchGameData();
+  setInterval(fetchGameData, 3000);
+
+  function updateTimer() {
+    const now = new Date();
+    const sec = now.getUTCSeconds();
+    let sync = 29 - (sec % 30);
+
+    document.getElementById('timer').innerText = sync;
+
+    const resElement = document.getElementById('res-val');
+    const labelElement = document.getElementById('sig-label');
+    const badge = document.getElementById('win-loss-badge');
+
+    if(sync <= 2 || sync >= 28) {
+      resElement.innerText = "WAITING...";
+      resElement.className = "v";
+      labelElement.innerText = "ANALYZING 20M";
+      if(sync === 29) {
+        badge.innerText = "--";
+        badge.className = "";
+      }
+    } else {
+      resElement.innerText = currentSignalResult;
+      resElement.className = "v " + (currentSignalResult === "BIG" ? "big" : "small");
+      labelElement.innerText = "SURE SHOT";
+    }
+
+    requestAnimationFrame(updateTimer);
+  }
+  updateTimer();
+}
+</script>
+
+</body>
+</html>
